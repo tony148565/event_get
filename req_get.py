@@ -22,6 +22,17 @@ def get_html(url, url2):
 def get_sel_html(url):
     driver_path = r"C:\Chrome_driver\chromedriver.exe"
     driver = webdriver.Chrome(driver_path, chrome_options=chrome_options)
+    driver.get(url)
     cc = driver.page_source
     driver.close()
-    return cc
+    soup = BeautifulSoup(cc, "html.parser")
+    # print(soup)
+    time.sleep(2)
+    print("Loading...")
+    return soup
+
+
+def get_xhr(url, url2):
+    headers = {'referer': url, 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'}
+    r = requests.get(url2, data=json.dumps(d), headers=headers)
+    return r
