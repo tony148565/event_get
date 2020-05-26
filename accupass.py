@@ -8,35 +8,38 @@ from selenium.webdriver.chrome.options import Options
 
 #driver_path = r"C:\Chrome_driver\chromedriver.exe"
 #driver = webdriver.Chrome(driver_path)
-url = "https://www.accupass.com/?area=center"
-url2 = "https://api.accupass.com/v3/home/center/channel/taichung_s"
-url3 = "https://api.accupass.com/v3/events/"
+
+
+def accupassget():
+    url = "https://www.accupass.com/?area=center"
+    url2 = "https://api.accupass.com/v3/home/center/channel/taichung_s"
+    url3 = "https://api.accupass.com/v3/events/"
 #driver.get(url)
 
-cc = req_get.get_xhr(url, url2).json()
+    cc = req_get.get_xhr(url, url2).json()
 #print(type(cc))
 #print(cc)
-aa = cc.get('channel')
+    aa = cc.get('channel')
 #print(type(aa))
-bb = aa.get('tagEvents')
+    bb = aa.get('tagEvents')
 #print(type(bb))
-for k in bb:
+    for k in bb:
     #print(k)
-    webId = k.get('eventIdNumber')
+        webId = k.get('eventIdNumber')
     #webName = k.get('name')
-    url4 = url3 + webId
+        url4 = url3 + webId
     #print(url4)
-    inWeb = req_get.get_xhr(url, url4).json()
+        inWeb = req_get.get_xhr(url, url4).json()
     #print(inWeb)
-    print(inWeb.get('title'))
-    print(inWeb.get('address'))
-    eventDate = inWeb.get('eventTimeObj')
-    print(eventDate.get('startDateTime'))
-    print(eventDate.get('endDateTime'))
-    cate = inWeb.get('category')
-    print(cate.get('name'))
-    booking = inWeb.get('registerBtn')
-    print(booking.get('price'))
+        print(inWeb.get('title'))
+        print(inWeb.get('address'))
+        eventDate = inWeb.get('eventTimeObj')
+        print(eventDate.get('startDateTime'))
+        print(eventDate.get('endDateTime'))
+        cate = inWeb.get('category')
+        print(cate.get('name'))
+        booking = inWeb.get('registerBtn')
+        print(booking.get('price'))
     #print(inWeb)
 
 
