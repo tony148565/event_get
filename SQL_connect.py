@@ -30,7 +30,7 @@ def insertIntoDatabase(table, dataDic):
             query += "%d, "
     query = query[:-2]
     query += ");"
-    print(query)#字串 = %s 數字 = %d
+    print(query)  # 字串 = %s 數字 = %d
     print(val)
     # 執行查詢
     cursor = conn.cursor()
@@ -52,11 +52,16 @@ def select(table):
     print(result)
 
 
-#id目前的使用狀況，要用前記得+=1
-idFlag = {"activityID": 1, "bookingID": 0, "addressID": 0}
-idFlag["activityID"] += 1
-dic = {"activityID": idFlag["activityID"], "name": "測試", "activityURL": "https://...", "startDate": "2020-01-01", "endDate": "2020-01-01"}
-insertIntoDatabase("ActivityMain", dic)
-select("ActivityMain")
-#確認執行
-conn.commit()
+# id目前的使用狀況，要用前記得+=1
+
+
+def insertdata():
+    print("run!!")
+    idflag = {"activityID": 3, "bookingID": 0, "addressID": 0}
+    idflag["activityID"] += 1
+    dic = {"activityID": idflag["activityID"], "name": "測試", "activityURL": "https://...", "startDate": "2020-01-01",
+           "endDate": "2020-01-01"}
+    #insertIntoDatabase("ActivityMain", dic)
+    select("ActivityMain")
+    # 確認執行
+    conn.commit()
