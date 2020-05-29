@@ -4,75 +4,58 @@ import time
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import req_get
-from selenium.webdriver.chrome.options import Options
-
-#driver_path = r"C:\Chrome_driver\chromedriver.exe"
-#driver = webdriver.Chrome(driver_path)
+import String_process
 
 
 def accupassget():
     url = "https://www.accupass.com/?area=center"
     url2 = "https://api.accupass.com/v3/home/center/channel/taichung_s"
     url3 = "https://api.accupass.com/v3/events/"
-#driver.get(url)
-
+    url5 = "https://www.accupass.com/event/"
     cc = req_get.get_xhr(url, url2).json()
-#print(type(cc))
-#print(cc)
     aa = cc.get('channel')
-#print(type(aa))
     bb = aa.get('tagEvents')
-#print(type(bb))
     for k in bb:
-    #print(k)
         webId = k.get('eventIdNumber')
-    #webName = k.get('name')
         url4 = url3 + webId
-    #print(url4)
         inWeb = req_get.get_xhr(url, url4).json()
-    #print(inWeb)
-        print(inWeb.get('title'))
-        print(inWeb.get('address'))
+        locat = inWeb.get('location')
+        photourl = url3 + k.get("photoUrl")
         eventDate = inWeb.get('eventTimeObj')
-        print(eventDate.get('startDateTime'))
-        print(eventDate.get('endDateTime'))
+        re = String_process.date_and_time(eventDate.get('startDateTime'))
+        startdate = re.get('date')
+        opentime = re.get('time')
+        re2 = String_process.date_and_time(eventDate.get('endDateTime'))
+        enddate = re2.get('date')
+        closetime = re2.get('time')
         cate = inWeb.get('category')
-        print(cate.get('name'))
+        url6 = url5 + webId
         booking = inWeb.get('registerBtn')
-        print(booking.get('price'))
-    #print(inWeb)
-
-
-
-#driver.close()
-#soup = BeautifulSoup(cc, "html.parser")
-#soup = req_get.get_sel_html(url)
-#print(soup)
-#time.sleep(2)
-#contain = soup.find('div', {'id': 'content'})
-#print(contain)
-#events = contain.find_all('div', {'class': 'style-6d9f2c7b-mobile-theme-container'})
-
-#print(events)
-#for event in events:
-    #print(event, '\n')
-    #details = event.find_all('div', {'class': 'style-5735f327-card'})
-    #print(detail, '\ninto\n')
-    #for detail in details:
-        #print(detail, '\n')
-        #di = d.find('div')
-        #main_url = "https://www.accupass.com"
-        #page_url = main_url + di.a.get('href')
-        #print(page_url)
-        #driver.get(page_url)
-        #dcc = req_get.get_sel_html(page_url)
-        #dca = dcc.find('div', {'class': 'style-08a13ad7-event-detail'})
-        #dcb = dca.find('section', {'class': 'style-2980af29-event-basicinfo-container'})
-        #dce = dca.find('section', {'class': 'style-906f804a-event-content-container'})
-        #print(dcb)
-
-
-#d = {'area': 'center'}
-#headers = {'referer': 'www.accupass.com', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'}
-#r = requests.post(url, data=json.dumps(d), headers=headers)
-
+        #print(url4)
+        #print(inWeb.get('title'))
+        print(inWeb.get('address'))
+        #print(photourl)
+        #print(locat.get('latitude'))
+        #print(locat.get('longitude'))
+        #print(startdate)
+        #print(opentime)
+        #print(enddate)
+        #print(closetime)
+        #print(cate.get('name'))
+        #print(booking.get('price'))
+        data = {'activity': 0,
+                'name': inWeb.get('title'),
+                'activityType': cate.get('name'),
+                'activityPicture': photourl,
+                'activityURL': url6,
+                'openTime': opentime,
+                'closeTime': closetime,
+                'startDate': startdate,
+                'endDate': enddate,
+                'bookingID': 0,
+                'addressID': 0}
+        add = String_process.address_where(inWeb.get('address'))
+        add['northLatitude'] = locat.get('latitude')
+        add['eastLongitude'] = locat.get('longitude')
+        print(add)
+        print(data)
