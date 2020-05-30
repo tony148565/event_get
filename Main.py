@@ -15,7 +15,7 @@ while 1:
     print(date)
     #__init__.taichanggov(date)
     accupass.accupassget()
-    #SQL_connect.select('ActivityMain')
+    #SQL_connect.select('Address')
     #gg = locate.loc('卓越商務中心')
     #print(gg.get('latitude'))
     #print(gg.get('longitude'))
