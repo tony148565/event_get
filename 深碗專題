@@ -5,4 +5,4 @@
 20200521 ACCUPASS爬蟲改為Ajax，爬蟲模組化
 20200526 增加main控制爬蟲運作，增加SQL_connect
 20200529 main更新，增加String process來處理字串問題
-20200530 基於測試更改main內容，ACCUPASS增加售票時間
+20200530 基於測試更改main內容，ACCUPASS增加售票時間，整理dict格式
