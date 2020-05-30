@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 import req_get
 import String_process
+import SQL_connect
 
 
 def accupassget():
@@ -75,6 +76,7 @@ def accupassget():
         add = String_process.address_where(inWeb.get('address'))
         add['northLatitude'] = locat.get('latitude')
         add['eastLongitude'] = locat.get('longitude')
-        print(data)
-        print(add)
-        print(booking_data)
+        SQL_connect.insertdata(data, add, booking_data)
+        #print(data)
+        #print(add)
+        #print(booking_data)
