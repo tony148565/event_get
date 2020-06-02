@@ -15,6 +15,7 @@ def accupassget():
     url5 = "https://www.accupass.com/event/"
     url7 = "https://www.accupass.com/eflow/ticket/"
     url8 = "https://eflow.accupass.com/v3/eflow/getEventTickets/"
+    url9 = "https://static.accupass.com"
     cc = req_get.get_xhr(url, url2).json()
     aa = cc.get('channel')
     bb = aa.get('tagEvents')
@@ -25,7 +26,7 @@ def accupassget():
         bookingurlspe = url8 + webId
         inWeb = req_get.get_xhr(url, url4).json()
         locat = inWeb.get('location')
-        photourl = url3 + k.get("photoUrl")
+        photourl = url9 + k.get("photoUrl")
         eventDate = inWeb.get('eventTimeObj')
         re = String_process.date_and_time(eventDate.get('startDateTime'))
         startdate = re.get('date')
@@ -67,12 +68,13 @@ def accupassget():
                 'startDate': startdate,
                 'endDate': enddate,
                 'bookingID': 0,
-                'addressID': 0,
-                'price': booking}
+                'addressID': 0}
+
         booking_data = {'bookingID': 0,
                         'bookingURL': bookingurl,
                         'bookingStartDate': booking_starttime,
-                        'bookingEndDate	':  booking_endtime}
+                        'bookingEndDate	':  booking_endtime,
+                        'price': int(booking.get('price'))}
         add = String_process.address_where(inWeb.get('address'))
         add['northLatitude'] = locat.get('latitude')
         add['eastLongitude'] = locat.get('longitude')
