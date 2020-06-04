@@ -27,6 +27,7 @@ def address_where(address):
     for i in range(10):  # 去郵遞區號
         full = full.replace(str(i), '')
     final_address = full + full_address[1] + full_address[2]
+    #print(final_address)
     addresss = {'addressID': 0,
                 'eastLongitude': 0,
                 'northLatitude': 0,
