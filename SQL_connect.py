@@ -85,7 +85,7 @@ def check_main(push):
     #print(listd)
     for i in listd:
         if i[1] == push.get('name'):
-            print("same event")
+            #print("same event")
             return i[0]
     return len(listd)+1
 
@@ -96,7 +96,7 @@ def check_add(push):
     #print(len(lista))
     for i in lista:
         if i[5] == push.get('fullAddress'):
-            print("same address")
+            #print("same address")
             return i[0]
     return len(lista)+1
 
@@ -107,7 +107,7 @@ def check_booking(push):
     #print(len(listb))
     for i in listb:
         if i[1] == push.get('bookingURL'):
-            print("same url")
+            #print("same url")
             return i[0]
     return len(listb)+1
 
