@@ -8,3 +8,4 @@
 20200530 基於測試更改main內容，ACCUPASS增加售票時間，整理dict格式
 20200602 確定database_connect格式，排除相同資料，ACCUPASS售價格式更改
 20200604 Main加入定期更新時間，其餘程式碼檢查bug
+20200613 增加kktix爬蟲，String process增加3個針對kktix的函式
