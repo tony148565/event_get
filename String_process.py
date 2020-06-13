@@ -24,7 +24,7 @@ def kktix_date(time_list):  # ex: 2000/01/01 --> 2000-01-01
     if len(afrp) == 2:
         afrp.append(afrp[0])
         afrp.append(afrp[1])
-    re = {'startDate': afrp[0], 'openTime': afrp[1], 'endTime': afrp[2], 'closeTime': afrp[3]}
+    re = {'startDate': afrp[0], 'openTime': afrp[1], 'endDate': afrp[2], 'closeTime': afrp[3]}
     return re
 
 
