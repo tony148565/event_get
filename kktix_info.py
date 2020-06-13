@@ -1,6 +1,6 @@
 import req_get
 import String_process
-import SQL_connext
+import SQL_connect
 
 def info(url, types):
     #url = "https://amyslschool.kktix.cc/events/ad9224fc-copy-3"
@@ -90,7 +90,7 @@ def info(url, types):
                     'bookingEndDate': booking_re[1],
                     'price': int(price)}
     #  print(lat, lng)
-    SQL_connext.insertdata(data, address, booking_data)
+    SQL_connect.insertdata(data, address, booking_data)
     #print(address)
     #print(data)
     #print(booking_data)
