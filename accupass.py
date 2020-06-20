@@ -3,6 +3,7 @@ import json
 import time
 from bs4 import BeautifulSoup
 from selenium import webdriver
+import type_translate
 import req_get
 import String_process
 import SQL_connect
@@ -58,9 +59,10 @@ def accupassget():
         #print(closetime)
         #print(cate.get('name'))
         #print(booking.get('price'))
+        types = type_translate.types_trans(str(cate.get('name')))
         data = {'activityID': 0,
                 'name': inWeb.get('title'),
-                'activityType': cate.get('name'),
+                'activityType': types,
                 'activityPicture': photourl,
                 'activityURL': url6,
                 'openTime': opentime,
