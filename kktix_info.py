@@ -1,6 +1,7 @@
 import req_get
 import String_process
 import SQL_connect
+import type_translate
 
 def info(url, types):
     #url = "https://amyslschool.kktix.cc/events/ad9224fc-copy-3"
@@ -71,6 +72,7 @@ def info(url, types):
     #print(locat)
     lat = locat.get('data-lat')  # north
     lng = locat.get('data-lng')  # east
+    types = type_translate.type_translate(types)
     address['northLatitude'] = lat
     address['eastLongitude'] = lng
     data = {'activityID': 0,
